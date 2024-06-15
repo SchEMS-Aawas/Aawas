@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "aawas-backend"
+version = "1.0.0"
+description = "Official Backend for Aawas"
+authors = ["Su123ACharya <acharyas186@gmail.com>"]
+license = "AAWAS PROPRIETARY LICENSE"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^5.0.6"
+cloudinary = "^1.40.0"
+djangorestframework = "^3.15.1"
+django-cors-headers = "^4.3.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
