@@ -24,6 +24,6 @@ class FeaturedProperty(models.Model):
 
 
 class PropertyImage(models.Model):
-    featured_property = models.ForeignKey(FeaturedProperty, on_delete=models.CASCADE, related_name="property_images")
+    featured_property = models.ForeignKey(FeaturedProperty, on_delete=models.CASCADE, related_name="images")
 
     image = CloudinaryField('image')

@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('aawas-admin/', admin.site.urls),
     path('api/auth/', include('apps.aawasUser.urls')),
+    path('api/featuredproperty/', include('apps.featuredProperty.urls') ),
 ]
