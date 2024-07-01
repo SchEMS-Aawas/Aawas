@@ -5,7 +5,7 @@ const ContactUs = () => {
     <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <h2 className="text-3xl font-bold mb-4">Contact Aawas.com</h2>
+          <h2 className="text-3xl font-bold mb-4 mt-9">Contact Aawas.com</h2>
           <p className="text-gray-700 mb-4">
             Are you looking for any kind of help and assistance? Send us a message or give us a call. We are here to provide you with more information and deal with your queries.
           </p>
@@ -26,7 +26,7 @@ const ContactUs = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-2xl font-bold mb-4">Send a Message</h2>
+          <h2 className="text-2xl font-bold mb-4 mt-9">Send a Message</h2>
           <form>
             <div className="mb-4">
               <label className="block text-gray-700 font-bold mb-2" htmlFor="fullName">Full Name</label>

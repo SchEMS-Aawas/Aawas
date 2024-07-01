@@ -7,7 +7,7 @@ import News from './MainBody page/News';
 const Mainbody = () => {
     return (
       <div>
-        <div className="bg-blue-500 flex items-center justify-center py-12 md:py-16">
+        <div className="bg-blue-500 flex items-center justify-center py-20 md:py-28">
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl font-semibold md:font-bold text-white mb-4">Welcome Home.</h1>
             <h3 className="text-md md:text-xl mt-2 text-white mb-6">
@@ -28,7 +28,7 @@ const Mainbody = () => {
           </div>
         </div>
         <FeaturedProperties />
-        < LatestProperty />
+        {/* < LatestProperty /> */}
         < News/>
       </div>
     );

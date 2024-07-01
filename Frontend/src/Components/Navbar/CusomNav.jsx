@@ -15,8 +15,12 @@ const CusomNav = () => {
   };
   const isLoggedIn = !!cookies.token;
 
+  const addproperty = () =>{
+    window.location.href = '/AddProperty';
+  }
+
   return (
-    <Navbar className="bg-white fixed z-10 w-full pb-2 border-b border-gray-200">
+    <Navbar className="bg-white fixed z-10 w-full pb-2 border-b border-gray-200  ">
       <Navbar.Brand>
         <Link to="/">
           <img src={logo} alt="logo" className="h-12 w-auto py-2" />
@@ -36,6 +40,10 @@ const CusomNav = () => {
             </Dropdown.Header> */}
             <Dropdown.Item>
               <Link to="/settings">Settings</Link>
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item>
+              <Link to="/addProperty">Add Property</Link>
             </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleLogout}>
@@ -59,11 +67,14 @@ const CusomNav = () => {
           <Link to="/" className="block px-4 py-2">Home</Link>
         </Navbar.Link>
         <Navbar.Link className="text-white bg-green-700 rounded-full hover:bg-green-500">
+          <Link to="/about-us" className="block px-4 py-2">About Us</Link>
+        </Navbar.Link>
+        {/* <Navbar.Link className="text-white bg-green-700 rounded-full hover:bg-green-500">
           <Link to="/sell" className="block px-4 py-2">Sell</Link>
         </Navbar.Link>
         <Navbar.Link className="text-white bg-green-700 rounded-full hover:bg-green-500">
           <Link to="/rent" className="block px-4 py-2">Rent</Link>
-        </Navbar.Link>
+        </Navbar.Link> */}
         <Navbar.Link className="text-white bg-green-700 rounded-full hover:bg-green-500">
           <Link to="/contact" className="block px-4 py-2">Contact</Link>
         </Navbar.Link>

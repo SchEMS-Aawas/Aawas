@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 
 
 
+
 from .models import *
 from .serializers import *
 
@@ -17,8 +18,6 @@ class LoginView(APIView):
     def post(self,request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid():
-            email = serializer.validated_data['email']
-            password = serializer.validated_data['password']
             user = self.get_User(serializer.data['email'], serializer.data['password'])
             if user is not None:
                 return Response({'token':user.pk}, status=status.HTTP_200_OK)
@@ -50,3 +49,4 @@ class MemberShipView(APIView):
         membership = MemberShip.objects.all()
         serializer = UserMembershipSerializer(membership, many=True)
         return Response(serializer.data, status = status.HTTP_200_OK)
+    

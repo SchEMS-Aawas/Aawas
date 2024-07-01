@@ -14,7 +14,10 @@ import Contact from './Components/pages/Contact/contact';
 import SignUP from './Components/pages/SignUp/SignUP';
 import Login from './Components/pages/Login/Login';
 import Terms from './Components/pages/Footer Pages/Terms';
-import Carrers from './Components/pages/Footer Pages/Carrers';
+import AddProperty from './Components/pages/Add Property/AddProperty';
+import PropertyDetail from './Components/body/MainBody page/PropertyDetails';
+import About from './Components/pages/Footer Pages/About';
+// import Carrers from './Components/pages/Footer Pages/Carrers';
 
 const App = () => {
   const location = useLocation();
@@ -35,7 +38,11 @@ const App = () => {
         <Route path='/signup' element={<SignUP />} />
         <Route path='/login' element={<Login />} />
         <Route path='/terms-and-conditions' element={<Terms />} />
-        <Route path='/careers' element={<careers />} />
+        {/* <Route path='/careers' element={<careers />} />    */}
+        <Route path='/addProperty' element={<AddProperty />} />
+        <Route path='/property/:id' element={<PropertyDetail />} />
+        <Route path='/about-us' element={<About/>} />
+        
       </Routes>
       
       {/* Conditionally render Footer */}

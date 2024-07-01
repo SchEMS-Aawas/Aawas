@@ -1,7 +1,7 @@
 from django.db import models
 
-import cloudinary
 from cloudinary.models import CloudinaryField
+from apps.aawasUser.models import User
 
 # Create your models here.
 
@@ -18,6 +18,7 @@ class FeaturedProperty(models.Model):
     price = models.IntegerField()
     location = models.CharField(max_length=255)
     details = models.TextField(default="")
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.title
