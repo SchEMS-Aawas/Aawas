@@ -8,6 +8,7 @@ const PropertyCard = ({ property }) => {
   const propertyImage = property.images && property.images.length > 0
     ? ("https://res.cloudinary.com/aawas/" + property.images[0].image)
     : 'default_image_url'; 
+    
 
   const handleClick = () => {
     navigate(`/property/${property.id}`); // Navigate to PropertyDetail page with property id

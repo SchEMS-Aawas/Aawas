@@ -14,7 +14,7 @@ const Mainbody = () => {
               Explore, Buy, Sell & Research<br />
               Homes, Land Plots, Apartments and Rentals in Nepal.
             </h3>
-            <div className="flex items-center mt-4 w-full px-2">
+            {/* <div className="flex items-center mt-4 w-full px-2">
               <input
                 type="text"
                 placeholder="Aawas Search..."
@@ -24,7 +24,7 @@ const Mainbody = () => {
                 <FaSearch className="text-white mr-2" />
                 Search
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <FeaturedProperties />

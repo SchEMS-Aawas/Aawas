@@ -50,3 +50,32 @@ class MemberShipView(APIView):
         serializer = UserMembershipSerializer(membership, many=True)
         return Response(serializer.data, status = status.HTTP_200_OK)
     
+class UserDetailsView(APIView):
+    def get(self, request):
+        user_id = request.query_params.get('user_id')
+        if not user_id:
+            return Response({'error':'User ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            user = User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            return Response({'error':'user not found'},status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = UserDetailsSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class UserUpdateView(APIView):
+    def put(self, request, user_id):
+        try:
+            user = User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            return Response({'error':'user not found'},status=status.HTTP_404_NOT_FOUND)
+        
+
+        serializer = UserUpdateSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+

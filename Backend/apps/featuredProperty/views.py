@@ -8,11 +8,13 @@ from .serializers import *
 
 
 
+
 class TopFeaturedPropertiesView(APIView):
     def get(self, request):
-        properties = FeaturedProperty.objects.all()[:8]
+        properties = FeaturedProperty.objects.all()[:20]
         serializer = PropertyThumbnailSerializer(properties, many =True)
         return Response(serializer.data)
+
 
 
 class PropertyDetailView(APIView):
@@ -30,14 +32,31 @@ class AddPropertyView(APIView):
             return Response(detail_serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+class UpdatePropertyView(APIView):
+    def put(self, request, id):
+        property_instance = get_object_or_404(FeaturedProperty, pk=id)
+        property_serializer= UpdatePropertySerialiizer(instance = property_instance, data= request.data, partial=True)
+        if property_serializer.is_valid():
+            property_instance = property_serializer.save()
+        else:
+            return Response(property_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        files = request.FILES.getlist('images')
+        for file in files:
+            PropertyImage.objects.create(featured_property=property_instance, image=file)
 
-class DeletePropertyView(APIView):
-    def post(self, request):
-        serializer = DeletePropertySerializer(data=request.data, context={'request':request})
-        if serializer.is_valid():
-            serializer.delete()
-            return Response({"message": "Property Deleted Successfully"}, status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        detail_serializer = PropertyDetailSerializer(property_instance)
+        return Response(detail_serializer.data)
+
+
+# class DeletePropertyView(APIView):
+#     def post(self, request):
+#         serializer = DeletePropertySerializer(data=request.data, context={'request':request})
+#         if serializer.is_valid():
+#             serializer.delete()
+#             return Response({"message": "Property Deleted Successfully"}, status=status.HTTP_204_NO_CONTENT)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
 class StatusView(APIView):

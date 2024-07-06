@@ -13,6 +13,7 @@ class PropertyStatusSerializer(serializers.ModelSerializer):
         model = Status
         fields = '__all__'
 
+
 class PropertyThumbnailSerializer(serializers.ModelSerializer):
     status = PropertyStatusSerializer(read_only=True)
     images = PropertyImageSerializer(read_only=True, many=True)
@@ -34,6 +35,11 @@ class AddPropertySerializer(serializers.ModelSerializer):
     class Meta:
         model = FeaturedProperty
         fields = ('status', 'title', 'price', 'location', 'details', 'added_by')
+
+class UpdatePropertySerialiizer(serializers.ModelSerializer):
+    class Meta:
+        model = FeaturedProperty
+        fields = ('status', 'title', 'price', 'location', 'details')
 
 
         
