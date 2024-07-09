@@ -6,17 +6,17 @@ import { useCookies } from 'react-cookie';
 import { FaUserCircle } from "react-icons/fa";
 
 const CusomNav = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const [cookies, , removeCookie] = useCookies(['token']);
   const [userName, setUserName] = useState('');
-  const [membershipType, setMembershipType] = useState(''); // State for membership type
+  const [membershipType, setMembershipType] = useState('');
   const [userId, setUserId] = useState('');
 
   useEffect(() => {
     if (cookies.token) {
-      const tokenUserId = cookies.token; // Assuming token directly contains the user ID
+      const tokenUserId = cookies.token;
       setUserId(tokenUserId);
       fetchUserDetails(tokenUserId);
-      fetchMembershipType(tokenUserId); // Fetch membership type
+      fetchMembershipType(tokenUserId);
     }
   }, [cookies.token]);
 
@@ -26,14 +26,14 @@ const CusomNav = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Token ${cookies.token}` // Add authorization header if required
+          'Authorization': `Token ${cookies.token}`
         }
       });
       if (!response.ok) {
         throw new Error('Failed to fetch user details');
       }
       const userData = await response.json();
-      setUserName(userData.username); // Assuming the response contains 'username'
+      setUserName(userData.username);
     } catch (error) {
       console.error('Error fetching user details:', error.message);
     }
@@ -45,23 +45,21 @@ const CusomNav = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Token ${cookies.token}` // Add authorization header if required
+          'Authorization': `Token ${cookies.token}`
         }
       });
       if (!response.ok) {
         throw new Error('Failed to fetch membership details');
       }
       const membershipData = await response.json();
-      setMembershipType(membershipData.membership.type); // Assuming membership type is directly accessible
+      setMembershipType(membershipData.membership.type);
     } catch (error) {
       console.error('Error fetching membership details:', error.message);
     }
   };
 
   const handleLogout = () => {
-    // Remove the token from cookies
     removeCookie('token', { path: '/' });
-    // Optionally, redirect to home or login page
     window.location.href = '/';
   };
 
@@ -83,7 +81,7 @@ const CusomNav = () => {
             label={
               <>
                 <FaUserCircle size={30} className="text-gray-700" />
-                <span className="ml-2 text-gray-700"> Hi {userName}! </span> {/* Display membership type here */}
+                <span className="ml-2 text-gray-700"> Hi {userName}! </span>
               </>
             }
           >
@@ -91,7 +89,7 @@ const CusomNav = () => {
               <Link to="/settings">Settings</Link>
             </Dropdown.Item>
             <Dropdown.Divider />
-            {membershipType !== 'Customer' && ( // Conditionally show based on membership type
+            {membershipType !== 'Customer' && (
               <>
                 <Dropdown.Item>
                   <Link to="/addProperty">Add Property</Link>
@@ -99,8 +97,16 @@ const CusomNav = () => {
                 <Dropdown.Divider />
               </>
             )}
+            {membershipType === 'Admin' && (
+              <>
+                <Dropdown.Item>
+                  <Link to="/admin">Admin Panel</Link>
+                </Dropdown.Item>
+                <Dropdown.Divider />
+              </>
+            )}
             <Dropdown.Item>
-              <Link to="/myDetails">My Details</Link> {/* New Update Details Link */}
+              <Link to="/myDetails">My Details</Link>
             </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleLogout}>

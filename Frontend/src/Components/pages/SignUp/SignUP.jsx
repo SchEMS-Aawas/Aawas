@@ -25,7 +25,11 @@ const SignUp = () => {
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/auth/get/membership/')
       .then(response => response.json())
-      .then(data => setMemberships(data));
+      .then(data => {
+        // Filter out 'Admin' membership type
+        const filteredMemberships = data.filter(member => member.type !== 'Admin');
+        setMemberships(filteredMemberships);
+      });
 
     fetch('http://127.0.0.1:8000/api/auth/get/gender/')
       .then(response => response.json())

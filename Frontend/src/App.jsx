@@ -19,6 +19,7 @@ import About from './Components/pages/Footer Pages/About';
 
 import UserDetails from './Components/UserDetails/UserDetails';
 import PropertyDetails from './Components/pages/Property Details/PropertyDetails';
+import AdminPannel from './AdminPannel';
 // import Carrers from './Components/pages/Footer Pages/Carrers';
 
 
@@ -26,7 +27,7 @@ const App = () => {
   const location = useLocation();
 
   // Define the paths where Navbar and Footer should be hidden
-  const hideNavbarFooterPaths = ['/login'];
+  const hideNavbarFooterPaths = ['/login', '/admin'];
 
   return (
     <div>
@@ -48,6 +49,7 @@ const App = () => {
         <Route path='/about-us' element={<About/>} />
         
         <Route path='/myDetails' element={ <UserDetails/> } />
+        <Route path='/admin' element={<AdminPannel/>} />
         
         
       </Routes>
